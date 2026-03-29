@@ -23,9 +23,11 @@ This project is built using a modern, containerized AI-engineering stack:
 
 ## 📸 System Previews
 
-*(Add your screenshots here!)*
-* **Dashboard View:** `![Mifugo Dashboard](./mifugo-ui.png)`
-* **AI Terminal Output:** `![FastAPI AI Generation](./terminal-output.png)`
+
+* **Dashboard View:** `![Mifugo Dashboard](./mifugo-ui.png)`<img width="1600" height="726" alt="mif" src="https://github.com/user-attachments/assets/02f2c014-36f3-4224-86cb-360beafd7139" />
+
+* **AI Terminal Output:** `![FastAPI AI Generation](./terminal-output.png)`<img width="1397" height="812" alt="status g" src="https://github.com/user-attachments/assets/94b88099-a016-4a33-90f6-0ce11033c787" />
+
 
 ## 🚀 How to Run Locally
 
@@ -39,7 +41,7 @@ Because the entire architecture is containerized, deployment is completely repro
 2.  **Start the Database and AI Engine:**
     ```bash
     docker-compose up -d
-    ```<img width="1600" height="726" alt="mif" src="https://github.com/user-attachments/assets/fe1a8319-8a0d-4135-828f-21f6d25fa035" />
+    ```
 
 3.  **Run the FastAPI Backend:**
     ```bash
