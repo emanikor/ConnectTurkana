@@ -26,7 +26,7 @@ router.post('/', protect, authorize('admin', 'officer'), async (req, res) => {
       return res.status(400).json({ message: 'All fields are required' })
     }
 
-    // STEP A: Save to MongoDB
+    //  Save to MongoDB
     const newPrice = await Price.create({
       animal,
       market,
@@ -36,16 +36,16 @@ router.post('/', protect, authorize('admin', 'officer'), async (req, res) => {
       entered_by_name: req.user.full_name
     })
 
-    // STEP B: THE BRIDGE - Sync to FastAPI (Port 8000)
+    //  THE BRIDGE - Sync to FastAPI (Port 8000)
     try {
       await axios.post('http://localhost:8000/sync-data', {
         animal: animal,
         price: price,
         location: market // Mapping 'market' to 'location' for AI
       })
-      console.log("🚀 AI Agent Synced: Data sent to PostgreSQL")
+      console.log("AI Agent Synced: Data sent to PostgreSQL")
     } catch (aiErr) {
-      console.error("⚠️ AI Project is offline. Data saved to Mongo only.")
+      console.error(" AI Project is offline. Data saved to Mongo only.")
     }
 
     res.status(201).json({

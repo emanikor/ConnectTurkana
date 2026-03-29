@@ -14,7 +14,7 @@
 //             description: req.body.description
 //         });
 
-//         console.log("✅ Saved to MongoDB");
+//         console.log("Saved to MongoDB");
 
 //         // 2. THE BRIDGE: Send to FastAPI (The AI "Brain")
 //         // This sends a COPY to the PostgreSQL database on port 8000
@@ -28,7 +28,7 @@
 //         } catch (aiErr) {
 //             // We use a separate try/catch so that if the AI is OFF, 
 //             // the main app still works and doesn't crash.
-//             console.error("⚠️ AI Project is offline, but Mongo is safe.");
+//             console.error(" AI Project is offline, but Mongo is safe.");
 //         }
 
 //         // Return the saved data to your React Frontend

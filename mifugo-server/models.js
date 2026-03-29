@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const bcrypt = require('bcryptjs')
 
-// ── USER ──────────────────────────────────────────
+// user model  
 const UserSchema = new mongoose.Schema({
   full_name: { type: String, required: true, trim: true },
   phone:     { type: String, required: true, unique: true, trim: true },
@@ -38,7 +38,7 @@ UserSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password)
 }
 
-// ── PRICE (your existing schema) ──────────────────
+//  PRICE -existing schema 
   const PriceSchema = new mongoose.Schema({
   animal:       { type: String, required: true, enum: ['Cattle', 'Goat', 'Camel', 'Sheep', 'Donkey'] },
   market:       { type: String, required: true, enum: ['Lodwar', 'Kakuma', 'Kalokol', 'Lokichar', 'Lokichoggio', 'Kibish'] },
@@ -50,7 +50,7 @@ UserSchema.methods.matchPassword = async function (enteredPassword) {
 })
 
 
-// ── LISTING (your existing schema) ────────────────
+// ─ LISTING (your existing schema) ──
 const ListingSchema = new mongoose.Schema({
   phone:         String,
   animal:        String,
