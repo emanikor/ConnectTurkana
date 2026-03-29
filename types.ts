@@ -1,3 +1,12 @@
+export interface User {
+  id: string;
+  name: string;
+  email: string;
+  role: 'Admin' | 'Market Master' | 'Field Officer';
+  location: string;
+  avatar?: string;
+}
+
 export type AnimalType = 'Goat' | 'Camel' | 'Cattle' | 'Sheep';
 export type MarketLocation = 'Lodwar' | 'Kakuma' | 'Lokichar';
 export type DemandLevel = 'High' | 'Medium' | 'Low';

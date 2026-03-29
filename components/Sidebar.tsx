@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { User as UserType } from '../types';
 import { 
   LayoutDashboard, 
   Smartphone, 
@@ -7,15 +8,17 @@ import {
   Settings, 
   Info,
   LogOut,
-  Menu
+  User as UserIcon
 } from 'lucide-react';
 
 interface SidebarProps {
   activeTab: string;
   setActiveTab: (tab: any) => void;
+  onLogout: () => void;
+  user: UserType;
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, onLogout, user }) => {
   const navItems = [
     { id: 'dashboard', label: 'Market Terminal', icon: LayoutDashboard },
     { id: 'simulator', label: 'Bush Link', icon: Smartphone },
@@ -79,29 +82,41 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => 
                 {item.label}
               </button>
             ))}
-            <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-red-400/70 hover:text-red-400 transition-all mt-4">
+            <button 
+              onClick={onLogout}
+              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-red-400/70 hover:text-red-400 transition-all mt-4"
+            >
               <LogOut size={18} />
               Logout
             </button>
           </nav>
           
-          <div className="mt-6 p-3 bg-slate-800/40 rounded-xl border border-slate-700/50">
+          <button 
+            onClick={() => setActiveTab('profile')}
+            className={`w-full mt-6 p-3 bg-slate-800/40 rounded-xl border transition-all text-left ${
+              activeTab === 'profile' ? 'border-turkana-accent bg-slate-800' : 'border-slate-700/50 hover:bg-slate-800/60'
+            }`}
+          >
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-full bg-slate-700 border border-slate-600 flex items-center justify-center overflow-hidden">
-                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User" />
+                {user.avatar ? (
+                  <img src={user.avatar} alt={user.name} />
+                ) : (
+                  <UserIcon size={16} className="text-slate-400" />
+                )}
               </div>
               <div>
-                <p className="text-xs font-bold text-white">L. Emoni</p>
-                <p className="text-[10px] text-slate-500">Lodwar Terminal</p>
+                <p className="text-xs font-bold text-white">{user.name}</p>
+                <p className="text-[10px] text-slate-500">{user.location}</p>
               </div>
             </div>
-          </div>
+          </button>
         </div>
       </aside>
 
       {/* Mobile Bottom Navigation */}
       <nav className="lg:hidden fixed bottom-0 left-0 right-0 bg-slate-900 border-t border-slate-800 px-6 py-3 flex justify-between items-center z-50">
-        {[...navItems, { id: 'settings', label: 'Settings', icon: Settings }].map((item) => (
+        {[...navItems, { id: 'profile', label: 'Profile', icon: UserIcon }, { id: 'settings', label: 'Settings', icon: Settings }].map((item) => (
           <button
             key={item.id}
             onClick={() => setActiveTab(item.id)}
